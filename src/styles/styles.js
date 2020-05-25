@@ -20,7 +20,11 @@ import article from './d-article.css';
 import title from './d-title.css';
 import math from './d-math.css';
 
-export const styles = base + layout + title + byline + article + math + print;
+// JoVI styles
+import endorsements from './jovi-endorsements.css';
+console.log(endorsements);
+
+export const styles = base + layout + title + byline + article + math + print + endorsements;
 
 export function makeStyleTag(dom) {
 

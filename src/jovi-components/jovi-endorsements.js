@@ -14,22 +14,21 @@
 
 export function endorsementsTemplate(frontMatter) {
   return `
-  <div class="byline grid">
-    <div class="authors-affiliations grid">
-      <h3>Endorsed By</h3>
-      <h3>Date</h3>
-      <h3>Version</h3>
-      ${frontMatter.endorsements.map(endorsement => `
-        <p class="author">
-          ${endorsement.url ? `
-            <a class="name" href="${endorsement.url}">${endorsement.name}</a>` : `
-            <span class="name">${endorsement.name}</span>`}
-        </p>
-        <p class="affiliation">
-          ${endorsement.date}
-        </p>
-      `).join('')}
-    </div>
+  <div class="endorsements grid">
+    <h3>Endorsed By</h3>
+    <h3>Version</h3>
+    ${frontMatter.endorsements.map(endorsement => `
+      <p class="endorser">
+        ${endorsement.URL ? `
+          <a class="name" href="${endorsement.URL}">${endorsement.name}</a>` : `
+          <span class="name">${endorsement.name}</span>`}
+      </p>
+      <p class="version">
+        ${frontMatter.githubPath && endorsement.version ? `
+          <a href="${frontMatter.githubPath}/tree/${endorsement.version}">${endorsement.version.substring(0,7)}</a> |
+          <a href="${frontMatter.githubPath}/compare/${endorsement.version}...master">compare</a>` : ``}
+      </p>
+    `).join('')}
   </div>
 `;
 }

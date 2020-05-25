@@ -94,12 +94,14 @@ export function mergeFromYMLFrontmatter(target, source) {
   }
   target.description = source.description;
   target.authors = source.authors.map( (authorObject) => new Author(authorObject));
-  target.endorsements = source.endorsements;
   target.katex = source.katex;
   target.password = source.password;
   if (source.doi) {
     target.doi = source.doi;
   }
+  //JoVI additions
+  target.endorsements = source.endorsements;
+  target.githubPath = source.githubPath;
 }
 
 export class FrontMatter {
@@ -107,7 +109,6 @@ export class FrontMatter {
     this.title = 'unnamed article'; // 'Attention and Augmented Recurrent Neural Networks'
     this.description = ''; // 'A visual overview of neural attention...'
     this.authors = []; // Array of Author(s)
-    this.endorsements = [];	// Array of endorsements
 
     this.bibliography = new Map();
     this.bibliographyParsed = false;
@@ -167,6 +168,10 @@ export class FrontMatter {
     //  doi: '10.23915/distill.00001',
     this.doi = undefined;
     this.publishedDate = undefined;
+    
+    // JoVI additions
+    this.endorsements = [];	// Array of endorsements
+    this.githubPath = undefined;
   }
 
   // Example:

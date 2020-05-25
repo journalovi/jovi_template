@@ -22,7 +22,6 @@ import math from './d-math.css';
 
 // JoVI styles
 import endorsements from './jovi-endorsements.css';
-console.log(endorsements);
 
 export const styles = base + layout + title + byline + article + math + print + endorsements;
 

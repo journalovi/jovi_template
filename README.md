@@ -1,6 +1,6 @@
-# Distill Template
+# JoVI Template (based on the Distill Template)
 
-This is the repository for the Distill web framework. 
+This is the repository for the JoVI paper template, based on the Distill web framework. 
 
 ## Contributing
 
@@ -19,6 +19,7 @@ First, run `npm install` to install all node modules required. Then, run `npm ru
 _This project is research code. It is not an official product of Google or any other institution supporting Distill._
 
 Copyright 2018, The Distill Template Authors.
+Modifications for JoVI copyright 2020, The JoVI Template Authors.
 
 Licensed under the Apache License, Version 2.0
 

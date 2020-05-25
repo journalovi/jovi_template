@@ -40,12 +40,16 @@ import Polyfills from './transforms/polyfills';
 import CitationList from './transforms/citation-list';
 import Reorder from './transforms/reorder';
 
+/* JOVI Transforms */
+import JoviEndorsements from './jovi-transforms/jovi-endorsements';
+
 const transforms = new Map([
   ['HTML', HTML],
   ['makeStyleTag', makeStyleTag],
   ['OptionalComponents', OptionalComponents],
   ['TOC', TOC],
   ['Byline', Byline],
+  ['JoviEndorsements', JoviEndorsements],
   ['Mathematics', Mathematics],
   ['Meta', Meta],
   ['Typeset', Typeset],

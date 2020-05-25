@@ -94,6 +94,7 @@ export function mergeFromYMLFrontmatter(target, source) {
   }
   target.description = source.description;
   target.authors = source.authors.map( (authorObject) => new Author(authorObject));
+  target.endorsements = source.endorsements;
   target.katex = source.katex;
   target.password = source.password;
   if (source.doi) {
@@ -106,6 +107,7 @@ export class FrontMatter {
     this.title = 'unnamed article'; // 'Attention and Augmented Recurrent Neural Networks'
     this.description = ''; // 'A visual overview of neural attention...'
     this.authors = []; // Array of Author(s)
+    this.endorsements = [];	// Array of endorsements
 
     this.bibliography = new Map();
     this.bibliographyParsed = false;

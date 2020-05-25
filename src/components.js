@@ -40,6 +40,9 @@ import { Figure }          from './components/d-figure';
 import { Interstitial }    from './components/d-interstitial';
 import { Slider }          from './ui/d-slider';
 
+/* JOVI components */
+import { JoviEndorsements }    from './jovi-components/jovi-endorsements';
+
 /* Distill website specific components */
 import { DistillHeader }   from './distill-components/distill-header';
 import { DistillAppendix } from './distill-components/distill-appendix';
@@ -90,10 +93,12 @@ const initialize = function() {
 
   const distillComponents = [DistillHeader, DistillAppendix, DistillFooter];
 
+  const joviComponents = [JoviEndorsements];
+
   if (window.distill.runlevel < 2) {
     throw new Error("Insufficient Runlevel for adding custom elements!");
   }
-  const allComponents = components.concat(distillComponents);
+  const allComponents = components.concat(distillComponents).concat(joviComponents);
   for (const component of allComponents) {
     console.debug("Runlevel 2: Registering custom element: " + component.is);
     customElements.define(component.is, component);

@@ -160,6 +160,11 @@ export const Controller = {
           byline.frontMatter = frontMatter;
         }
 
+        const endorsements = document.querySelector("jovi-endorsements");
+        if (endorsements) {
+          endorsements.frontMatter = frontMatter;
+        }
+
         if (data.katex) {
           DMath.katexOptions = data.katex;
         }

@@ -14,8 +14,7 @@
 
 import { Template } from '../mixins/template.js';
 
-const T = Template('d-footnote', `
-<style>
+const T = Template('d-footnote', `<style>
 
 d-math[block] {
   display: block;
@@ -42,19 +41,9 @@ span {
   padding: 10px;
 }
 
-</style>
-
-<d-hover-box>
-  <div class="footnote-container">
-    <slot id="slot"></slot>
-  </div>
-</d-hover-box>
-
-<sup>
-  <span id="fn-" data-hover-ref=""></span>
-</sup>
-
-`);
+</style
+><d-hover-box><div class="footnote-container"><slot id="slot"></slot></div></d-hover-box
+><sup><span id="fn-" data-hover-ref=""></span></sup>`);
 
 export class Footnote extends T(HTMLElement) {
 

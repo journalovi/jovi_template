@@ -38,22 +38,58 @@ export function renderTOC(element, headings) {
     display: block;
   }
 
+  @media (min-width: 1000px) {
+    d-toc {      
+      grid-column-start: 1;
+      grid-column-end: 4;
+      grid-row-start: 1;
+      grid-row-end: 10;
+      justify-self: end;
+      padding-top: 1rem;
+      padding-right: 1rem;
+    }
+
+    d-toc nav {
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  d-toc h2 {
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+    padding-bottom: 0;
+    margin-top: 0;
+  }
+  
   d-toc ul {
     padding-left: 0;
+    list-style-type: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Roboto", Helvetica, sans-serif;
+  }
+
+  d-toc > nav > ul > li {
+    font-weight: 700;
+  }
+
+  d-toc li, d-toc ul {
+    margin-bottom: 0.5em;
   }
 
   d-toc ul > ul {
-    padding-left: 24px;
+    padding-left: 12px;
   }
 
   d-toc a {
     border-bottom: none;
     text-decoration: none;
   }
+  
 
   </style>
-  <nav role="navigation" class="table-of-contents"></nav>
-  <h2>Table of contents</h2>
+  <nav role="navigation" class="table-of-contents figcaption">
+  <h2>Contents</h2>
   <ul>`;
 
   for (const el of headings) {
@@ -68,8 +104,6 @@ export function renderTOC(element, headings) {
     let newLine = '<li>' + '<a href="' + link + '">' + title + '</a>' + '</li>';
     if (el.tagName == 'H3') {
       newLine = '<ul>' + newLine + '</ul>';
-    } else {
-      newLine += '<br>';
     }
     ToC += newLine;
 

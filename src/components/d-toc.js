@@ -45,7 +45,6 @@ export function renderTOC(element, headings) {
       grid-row-start: 1;
       grid-row-end: 10;
       justify-self: end;
-      padding-top: 1rem;
       padding-right: 1rem;
     }
 
@@ -61,6 +60,7 @@ export function renderTOC(element, headings) {
     border: none;
     padding-bottom: 0;
     margin-top: 0;
+    margin-bottom: 1em;
   }
   
   d-toc ul {
@@ -92,6 +92,7 @@ export function renderTOC(element, headings) {
   <h2>Contents</h2>
   <ul>`;
 
+  var previousTag = "";
   for (const el of headings) {
     // should element be included in TOC?
     const isInTitle = el.parentElement.tagName == 'D-TITLE';
@@ -102,11 +103,17 @@ export function renderTOC(element, headings) {
     const link = '#' + el.getAttribute('id');
 
     let newLine = '<li>' + '<a href="' + link + '">' + title + '</a>' + '</li>';
-    if (el.tagName == 'H3') {
-      newLine = '<ul>' + newLine + '</ul>';
+    if (el.tagName == 'H3' && previousTag != 'H3') {
+      newLine = '<ul>' + newLine;
+    } else if (el.tagName != 'H3' && previousTag == 'H3') {
+      newLine = '</ul>' + newLine;
     }
+    
     ToC += newLine;
-
+    previousTag = el.tagName;
+  }
+  if (previousTag == 'H3') {
+    ToC += '</ul>';
   }
 
   ToC += '</ul></nav>';

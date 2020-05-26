@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { Template } from "../mixins/template";
-import { hover_cite, bibliography_cite } from "../helpers/citation";
+import { hover_cite, bibliography_cite, inline_cite_long_entries, inline_cite_author } from "../helpers/citation";
 
 const T = Template(
   "d-cite",
@@ -38,8 +38,7 @@ const T = Template(
   line-height: 1.1em;
   text-align: center;
   position: relative;
-  top: -2px;
-  margin: 0 2px;
+  top: -1px;
 }
 
 figcaption .citation-number {
@@ -69,6 +68,7 @@ ul li:last-of-type {
 <d-hover-box id="hover-box"></d-hover-box>
 
 <div id="citation-" class="citation">
+  <span class="citation-name"></span>
   <span class="citation-number"></span>
 </div>
 `
@@ -84,6 +84,7 @@ export class Cite extends T(HTMLElement) {
 
   connectedCallback() {
     this.outerSpan = this.root.querySelector("#citation-");
+    this.nameSpan = this.root.querySelector(".citation-name");
     this.innerSpan = this.root.querySelector(".citation-number");
     this.hoverBox = this.root.querySelector("d-hover-box");
     window.customElements.whenDefined("d-hover-box").then(() => {
@@ -146,6 +147,10 @@ export class Cite extends T(HTMLElement) {
   }
 
   displayNumbers(numbers) {
+    // This is a no-op for JoVI
+    // TODO: could make this configurable
+    return;
+    
     if (!this.innerSpan) return;
     const numberStrings = numbers.map(index => {
       return index == -1 ? "?" : index + 1 + "";
@@ -164,12 +169,29 @@ export class Cite extends T(HTMLElement) {
   }
 
   displayEntries(entries) {
-    if (!this.hoverBox) return;
-    this.hoverBox.innerHTML = `<ul>
-      ${entries
-        .map(hover_cite)
-        .map(html => `<li>${html}</li>`)
-        .join("\n")}
-    </ul>`;
+    // textual citation is Smith [2002] instead of [Smith 2002]
+    const textualCite = this.hasAttribute("textual") && this.nameSpan && entries.length == 1
+      
+    if (textualCite) {
+      const ent = entries[0];
+      this.nameSpan.textContent = inline_cite_author(ent);
+      if (this.innerSpan) {
+        this.innerSpan.textContent = "[" + ent.year + "]";
+      }
+    } else {
+      if (this.innerSpan) {
+        const textContent = "[" + inline_cite_long_entries(entries) + "]";
+        this.innerSpan.textContent = textContent;
+      }
+    }
+        
+    if (this.hoverBox) {
+      this.hoverBox.innerHTML = `<ul>
+        ${entries
+          .map(hover_cite)
+          .map(html => `<li>${html}</li>`)
+          .join("\n")}
+      </ul>`;
+    }
   }
 }

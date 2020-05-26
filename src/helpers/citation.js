@@ -37,21 +37,34 @@ export function inline_cite_short(keys) {
   return "[" + keys.map(cite_string).join(", ") + "]";
 }
 
-export function inline_cite_long(keys) {
-  function cite_string(key) {
-    if (key in data.bibliography) {
-      var ent = data.bibliography[key];
-      var names = ent.author.split(" and ");
-      names = names.map(name => name.split(",")[0].trim());
-      var year = ent.year;
-      if (names.length == 1) return names[0] + ", " + year;
-      if (names.length == 2) return names[0] + " & " + names[1] + ", " + year;
-      if (names.length > 2) return names[0] + ", et al., " + year;
+export function inline_cite_author(ent) {
+  var names = ent.author.split(" and ");
+  names = names.map(name => name.split(",")[0].trim());
+  if (names.length == 1) return names[0];
+  if (names.length == 2) return names[0] + " & " + names[1];
+  if (names.length > 2) return names[0] + " et al.";
+}
+
+export function inline_cite_long_entries(entries) {
+  function cite_string(ent) {
+    if (ent) {
+      return inline_cite_author(ent) + " " + ent.year;
     } else {
       return "?";
     }
   }
-  return keys.map(cite_string).join(", ");
+  return entries.map(cite_string).join(", ");
+}
+
+export function inline_cite_long(keys) {
+  function get_entry(key) {
+    if (key in data.bibliography) {
+      return data.bibliography[key];
+    } else {
+      return null;
+    }
+  }
+  return inline_cite_long_entries(keys.map(get_entry));
 }
 
 function author_string(ent, template, sep, finalSep) {

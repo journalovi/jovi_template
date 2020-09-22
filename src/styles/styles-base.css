@@ -64,6 +64,14 @@ table tbody :first-child td {
   padding-top: 0.5em;
 }
 
+table.contributions thead th {
+  text-align: center;
+}
+
+table.contributions tbody td {
+  text-align: center;
+}
+
 pre {
   overflow: auto;
   max-width: 100%;

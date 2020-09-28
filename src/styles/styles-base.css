@@ -64,6 +64,11 @@ table tbody :first-child td {
   padding-top: 0.5em;
 }
 
+table.contributions {
+  margin-bottom: 1em;
+}
+
+
 table.contributions thead th {
   text-align: center;
 }

@@ -36,6 +36,7 @@ export function renderTOC(element, headings) {
   d-toc {
     contain: layout style;
     display: block;
+	margin-bottom: 2rem;
   }
 
   @media (min-width: 1000px) {
@@ -69,10 +70,6 @@ export function renderTOC(element, headings) {
     font-family: -apple-system, BlinkMacSystemFont, "Roboto", Helvetica, sans-serif;
   }
 
-  d-toc > nav > ul > li {
-    font-weight: 700;
-  }
-
   d-toc li, d-toc ul {
     margin-bottom: 0.5em;
   }
@@ -86,6 +83,23 @@ export function renderTOC(element, headings) {
     text-decoration: none;
   }
   
+  d-toc > nav > h2 {
+	counter-reset: toc-section;
+  }
+  
+  d-toc > nav > ul > li :before {
+	counter-increment: toc-section;
+	content: counter(toc-section) " ";
+  }
+  
+  d-toc > nav > ul > li {
+	counter-reset: toc-subsection;
+  }
+
+  d-toc > nav > ul > ul > li :before {
+	counter-increment: toc-subsection;
+	content: counter(toc-section) "." counter(toc-subsection) " ";
+  }
 
   </style>
   <nav role="navigation" class="table-of-contents figcaption">

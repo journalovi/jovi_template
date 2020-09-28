@@ -42,6 +42,25 @@ d-article > * {
 
 /* H2 */
 
+d-toc {
+  counter-reset: section;
+}
+
+d-article > h2:before {
+  counter-increment: section;
+  content: counter(section) " ";
+  text-align: right;
+}
+
+@media(min-width: 768px) {
+  d-article > h2:before, d-article > h3:before {
+    margin-left: -100px;
+    width: 80px;
+    display: block;
+    position: absolute;
+    font-weight: normal;
+  }
+}
 
 d-article .marker {
   text-decoration: none;
@@ -83,6 +102,16 @@ d-article h2 {
 }
 
 /* H3 */
+
+d-article h2 {
+	counter-reset: subsection;
+}
+
+d-article > h3:before {
+  counter-increment: subsection;
+  content: counter(section) "." counter(subsection) " ";
+  text-align: right;
+}
 
 d-article h3 {
   font-weight: 700;

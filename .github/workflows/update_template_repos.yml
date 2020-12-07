@@ -19,8 +19,8 @@ jobs:
       with:
         source_file: 'dist/template.v2.js*'
         destination_repo: 'journalovi/jovi_template_html'
-        user_email: 'actions@github.com'
-        user_name: 'GitHub Actions'
+        user_email: 'matthew.kay@gmail.com'
+        user_name: 'mjskay'
         commit_message: 'Update template javascript'
 
     - name: Update template javascript
@@ -30,6 +30,6 @@ jobs:
       with:
         source_file: 'examples/*'
         destination_repo: 'journalovi/jovi_template_html'
-        user_email: 'actions@github.com'
-        user_name: 'GitHub Actions'
+        user_email: 'matthew.kay@gmail.com'
+        user_name: 'mjskay'
         commit_message: 'Update template paper'

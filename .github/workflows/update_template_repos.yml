@@ -13,7 +13,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Update template javascript
-      uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
+      uses: dmnemec/copy_file_to_another_repo_action@6e334d9
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
@@ -24,7 +24,7 @@ jobs:
         commit_message: 'Update template javascript'
 
     - name: Update template javascript
-      uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
+      uses: dmnemec/copy_file_to_another_repo_action@6e334d9
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:

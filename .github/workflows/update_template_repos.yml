@@ -12,22 +12,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Update template javascript
+    - name: Update jovi_template_html
       uses: dmnemec/copy_file_to_another_repo_action@6e334d9
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: 'dist/template.v2.js*'
-        destination_repo: 'journalovi/jovi_template_html'
-        user_email: 'actions@github.com'
-        user_name: 'GitHub Actions'
-
-    - name: Update template paper
-      uses: dmnemec/copy_file_to_another_repo_action@6e334d9
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-      with:
-        source_file: 'examples/*'
+        source_file: 'examples/* dist/template.v2.js*'
         destination_repo: 'journalovi/jovi_template_html'
         user_email: 'actions@github.com'
         user_name: 'GitHub Actions'
